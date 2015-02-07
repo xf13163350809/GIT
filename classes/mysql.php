@@ -4,7 +4,7 @@
  * @class IMysql
  * @brief MYSQL数据库应用
  */
-namespace classes\Db;
+namespace classes;
 
 /**
  * MYSQL数据库驱动

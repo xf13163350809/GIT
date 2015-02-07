@@ -1,12 +1,11 @@
 <?php
 namespace classes;
-use classes;
+use controller\baseController;
 class IWeb{
-    private $act;
-    private $op;
+    private static $Controller;
+    private static $Action;
     private static $instance = null;
     public function  __construct(){
-        echo "IGNORE_EXCEPTION";
     }
     /*
      *实例化
@@ -26,36 +25,71 @@ class IWeb{
      *
      */
     private static function controller(){
-/*        //二级域名
-        if ($GLOBALS['setting_config']['enabled_subdomain'] == '1' && $_GET['act'] == 'index' && $_GET['op'] == 'index'){
-            $store_id = subdomain();
-        if ($store_id > 0) $_GET['act'] = 'show_store';
-        }
-*/
 
-        $act_file = realpath(BASE_PATH.'/controller/'.$_GET['controller'].'.php');
-        $class_name = $_GET['controller'].'Controller';
-        if(!@include($act_file)){
-            if (C('debug')) {
-                throw new Exception("Base Error: access file isn't exists!");
-            } else {
-                throw new Exception('抱歉！您访问的页面不存在','','html','error');
+
+        if(!C("URL_SIZE_DISTINGUISH")){
+
+            self::$Controller=@$_GET['controller'];
+
+            self::$Action=@$_GET['action'];
+
+            if(empty(self::$Controller)){
+
+                self::$Controller=@$_GET['Controller'];
+
             }
+
+            if(empty(self::$Action)){
+
+                self::$Action=@$_GET['Action'];
+
+            }
+
+        }else{
+
+            self::$Controller=@$_GET['Controller'];
+
+            self::$Controller=@$_GET['Action'];
+
+        }
+
+        $act_file = BASE_PATH.'/'.C('CONTROLLER_NAME').'/'.self::$Controller.'Controller.php';
+
+        $class_name =  '\Controller\\'.self::$Controller.'Controller';
+
+        if(!@include($act_file)){
+
+            $error = "Base Error: Controller isn't exists!";
+
+            throw_exception($error);
+
         }
         if (class_exists($class_name)){
+
             $main = new $class_name();
-            $function = $_GET['op'].'Op';
+
+            $function = self::$Action;
+
             if (method_exists($main,$function)){
+
                 $main->$function();
-            }elseif (method_exists($main,'indexOp')){
-                $main->indexOp();
+
+            }elseif (method_exists($main,'index')){
+
+                $main->index();
+
             }else{
+
                 $error = "Base Error: function $function not in $class_name!";
+
                 throw_exception($error);
+
             }
         }else {
+
             $error = "Base Error: class $class_name isn't exists!";
-            throw new Exception($error);
+
+            throw_exception($error);
         }
     }
 }

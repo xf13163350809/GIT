@@ -1,4 +1,5 @@
 <?php
+namespace controller;
 class areaseController extends Controller{
     function show_area($parent_id=''){
         $where=" 1=1 ";

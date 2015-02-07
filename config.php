@@ -24,8 +24,11 @@ return array(
 
         /*异常处理*/
         'debug'=>array(
-            'IGNORE_EXCEPTION'      =>'TRUE'    //是否显示错误信息（TRUE OR FALSE）
+            'IGNORE_EXCEPTION'      =>true,    //是否显示错误信息（TRUE OR FALSE）
         ),
+
+        'URL_SIZE_DISTINGUISH'      =>FALSE,    //url区分大小写(默认区分大小)
+        'CONTROLLER_NAME'           =>'Controller'    //控制器文件名
 
     );
 ?>

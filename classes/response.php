@@ -1,12 +1,14 @@
 <?php
-include('./Main.php');
-class Response extends Main{
+namespace classes;
+class Response {
+    /*实例化*/
+
     /*
      * 返回Json格式数据
      * $code 编码
      * $message 提示信息
      * $data  数据(数组)*/
-    public static function json($code,$message='',$data=array()){
+   static public function json($code,$message='',$data=array()){
         if(!is_numeric($code)){
             return '返回编码不能为空';
         }

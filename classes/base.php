@@ -1,10 +1,9 @@
 <?php
 namespace classes;
-
+use classes\IWeb;
 class Base{
     function __construct(){
 
-        var_dump($config);
     }
 
 }
