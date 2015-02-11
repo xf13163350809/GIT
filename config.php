@@ -28,7 +28,12 @@ return array(
         ),
 
         'URL_SIZE_DISTINGUISH'      =>FALSE,    //url区分大小写(默认区分大小)
-        'CONTROLLER_NAME'           =>'Controller'    //控制器文件名
+        'CONTROLLER_NAME'           =>'Controller',    //控制器文件名
+        'CLASS_FILE_NAME'                =>'classes',    //类文件名
+
+        'SYSTEM'=>array(
+            'REQUEST_TYPE'              =>'get',  //参数获取方式（get or post）
+        )
 
     );
 ?>

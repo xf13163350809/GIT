@@ -3,6 +3,8 @@
  * 核心公共方法
  */
 
+set_include_path('classes' . PATH_SEPARATOR . get_include_path());
+spl_autoload_register();
 /**
  * 抛出异常
  *
@@ -27,13 +29,51 @@ function throw_exception($error){
 function C($key){
 
     if(strpos($key,'.')){
+
         $key=explode('.',$key);
+
         if(isset($key[2])){
+
            return$GLOBALS['config'][$key[0]][$key[1]][$key[2]];
+
         }
+
            return $GLOBALS['config'][$key[0]][$key[1]];
+
     }else{
+
         return $GLOBALS['config'][$key];
+
+    }
+
+}
+
+/**
+ * 实例化
+ *
+ * @return mixed
+ */
+
+function getDB() {
+
+    $classname=ucwords($GLOBALS['config']['DB']['DB_TYPE']);
+
+    ini_set('include_path','classes');
+
+    @include_once(BASE_PATH.'/'.strtolower($GLOBALS['config']['DB']['DB_TYPE']).'.php');
+
+    if(class_exists(ucwords($classname))){
+
+       $class='\classes\\'.ucwords($classname);
+
+      return $class::getInstance();
+
+    }else{
+
+        $error='failed : Model Instantiation Failed !';
+
+        throw_exception($error);
+
     }
 
 }
@@ -61,4 +101,22 @@ function getReferer(){
     return empty($_SERVER['HTTP_REFERER'])?'':$_SERVER['HTTP_REFERER'];
 }
 
+
+function I($obj){
+
+    $type=strtolower(C('SYSTEM.REQUEST_TYPE'));
+    switch($type){
+
+        case 'get' :
+            return isset($_GET[$obj])?$_GET[$obj]:'';
+        break;
+
+        case 'post':
+            return isset($_POST[$obj])?$_POST[$obj]:'';
+        break;
+
+        default:
+           throw_exception('目前仅支持post或get请求');
+    }
+}
 ?>

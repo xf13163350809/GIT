@@ -1,6 +1,7 @@
 <?php
 namespace classes;
 use classes;
+use classes\File;
 class Pdo {
 
     private static $instance = null;
@@ -32,9 +33,10 @@ class Pdo {
     public static function getInstance(){
 
         if (self::$instance === null || !(self::$instance instanceof Pdo)){
-            self::$instance = new Pdo();
-        }
 
+            self::$instance = new Pdo();
+
+        }
         return self::$instance;
     }
 
@@ -85,7 +87,7 @@ class Pdo {
      * 释放查询结果
      * @access public
      */
-    public function free() {
+    private function free() {
         self::$queryID = '';
     }
 
@@ -96,7 +98,7 @@ class Pdo {
      * @param array $bind 参数绑定
      * @return mixed
      */
-    public function query($sql,$params) {
+    public function query($sql,$params=null) {
 
        try {
 
@@ -116,6 +118,7 @@ class Pdo {
                     $stmt->bindValue(1,$params);
                 }
             }
+
             if($stmt->execute()) {
 
                 self::$__queries++;
@@ -143,6 +146,7 @@ class Pdo {
         if ( !self::$linkRes ) return false;
 
         self::$queryStr = $str;
+
         if(!empty($bind)){
             self::$queryStr .=   '[ '.print_r($bind,true).' ]';
         }

@@ -11,9 +11,21 @@ if(!@include(str_replace('\\','/',dirname(__FILE__).'/classes/IWeb.php'))) exit(
 if(!@include(str_replace('\\','/',dirname(__FILE__).'/classes/pdo.php'))) exit('pdo.php isn\'t exists!');
 if(!@include(str_replace('\\','/',dirname(__FILE__).'/classes/core.php'))) exit('core.php isn\'t exists!');
 if(!@include(str_replace('\\','/',dirname(__FILE__).'/classes/response.php'))) exit('response.php isn\'t exists!');
+if(!@include(str_replace('\\','/',dirname(__FILE__).'/classes/filter.php'))) exit('filter.php isn\'t exists!');
+if(!@include(str_replace('\\','/',dirname(__FILE__).'/classes/model.php'))) exit('model.php isn\'t exists!');
+
+//if(!@include(str_replace('\\','/',dirname(__FILE__).'/model/ProductsModel.php'))) exit('ProductsModel.php isn\'t exists!');
+if(!@include(str_replace('\\','/',dirname(__FILE__).'/model/model.php'))) exit('model.php isn\'t exists!');
+include(str_replace('\\','/',dirname(__FILE__).'/model/ProductsModel.php'));
+include(str_replace('\\','/',dirname(__FILE__).'/model/ShopModel.php'));
+
+
+if(!@include(str_replace('\\','/',dirname(__FILE__).'/classes/query.php'))) exit('query.php isn\'t exists!');
 
 if(!@include(str_replace('\\','/',dirname(__FILE__).'/classes/global.php'))) exit('global.php isn\'t exists!');
 $config=require(str_replace('\\','/',dirname(__FILE__).'/config.php'));
+
+
 IWeb::getInstance();
 /*include('./Controller/baseController.php');
 $base=new \Controller\baseController();

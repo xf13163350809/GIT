@@ -1,12 +1,14 @@
 <?php
 namespace classes;
-use controller\baseController;
 class IWeb{
     private static $Controller;
     private static $Action;
     private static $instance = null;
     public function  __construct(){
+
     }
+
+
     /*
      *สตภýปฏ
      *
@@ -14,9 +16,12 @@ class IWeb{
      * */
     public static function getInstance(){
         if (self::$instance === null || !(self::$instance instanceof IWeb)){
+
             self::$instance = new IWeb();
         }
+
         self::controller();
+
         return self::$instance;
     }
 
@@ -49,7 +54,7 @@ class IWeb{
 
             self::$Controller=@$_GET['Controller'];
 
-            self::$Controller=@$_GET['Action'];
+            self::$Action=@$_GET['Action'];
 
         }
 
@@ -92,5 +97,8 @@ class IWeb{
             throw_exception($error);
         }
     }
+
+
+
 }
 ?>
