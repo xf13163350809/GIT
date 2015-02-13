@@ -19,7 +19,7 @@ class Products extends Model{
 
         $goods->fields='g.*';
 
-        $goods->join=' left join '.C('DB.DB_PREFIX').'channel ch on ch.goods_id';
+        $goods->join=' left join '.C('DB.DB_PREFIX').'channel ch on ch.goods_id=g.id';
 
         $goods->where=' g.id='.$porId.' and ch.channel='.$channelid;
 

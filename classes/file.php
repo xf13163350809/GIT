@@ -4,16 +4,21 @@ class File{
     static private $ETX;
     public function __construct(){
 
-        $this->_dir=dirname(dirname(__FILE__)).'/'.$GLOBALS['config']['cachePath'].'/';
-        if($GLOBALS['config']['cacheFileType']!==''&&$GLOBALS['config']['cacheFileType']!=='.php'){
-            self::$ETX=$GLOBALS['config']['cacheFileType'];
+        $this->_dir=BASE_PATH.'/'.$GLOBALS['config']['cache']['cachePath'].'/';
+
+        if($GLOBALS['config']['cache']['cacheFileType']!==''&&$GLOBALS['config']['cache']['cacheFileType']!=='.php'){
+
+            self::$ETX=$GLOBALS['config']['cache']['cacheFileType'];
         }
 
     }
     public function cacheData($key,$value='',$cacheTime=''){
-        if($cacheTime===''){
-            $cacheTime=$GLOBALS['config']['cacheTime'];
+
+        if(empty($cacheTime)&&$cacheTime!==0){
+
+            @$cacheTime=$GLOBALS['config']['cacheTime'];
         }
+
         $filename=$this->_dir.$key.self::$ETX;
 
         if($value!==''){ //Ğ´ÈëÓëÉ¾³ı»º´æ

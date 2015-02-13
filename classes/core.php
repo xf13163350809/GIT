@@ -119,4 +119,7 @@ function I($obj){
            throw_exception('目前仅支持post或get请求');
     }
 }
+
+
+
 ?>

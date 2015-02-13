@@ -18,6 +18,10 @@ if(!@include(str_replace('\\','/',dirname(__FILE__).'/classes/model.php'))) exit
 if(!@include(str_replace('\\','/',dirname(__FILE__).'/model/model.php'))) exit('model.php isn\'t exists!');
 include(str_replace('\\','/',dirname(__FILE__).'/model/ProductsModel.php'));
 include(str_replace('\\','/',dirname(__FILE__).'/model/ShopModel.php'));
+include(str_replace('\\','/',dirname(__FILE__).'/model/ServeModel.php'));
+include(str_replace('\\','/',dirname(__FILE__).'/model/MemberModel.php'));
+include(str_replace('\\','/',dirname(__FILE__).'/model/OrderModel.php'));
+include(str_replace('\\','/',dirname(__FILE__).'/model/UcenterModel.php'));
 
 
 if(!@include(str_replace('\\','/',dirname(__FILE__).'/classes/query.php'))) exit('query.php isn\'t exists!');
@@ -27,6 +31,7 @@ $config=require(str_replace('\\','/',dirname(__FILE__).'/config.php'));
 
 
 IWeb::getInstance();
+
 /*include('./Controller/baseController.php');
 $base=new \Controller\baseController();
 var_dump($base->index());*/

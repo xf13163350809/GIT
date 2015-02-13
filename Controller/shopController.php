@@ -9,6 +9,8 @@ namespace controller;
 use classes\Controller;
 use classes\Response;
 use classes\IFilter;
+use Shop;
+
 class shopController extends Controller{
 
 /*
@@ -20,7 +22,7 @@ class shopController extends Controller{
 
         if($ProId=IFilter::act(I('porId'),'int')){
 
-            $Shop=new \Shop();
+            $Shop=new Shop();
 
             $result=$Shop->shopInfoByProId($ProId);
 
@@ -44,7 +46,7 @@ class shopController extends Controller{
 
         if($shopId=IFilter::act(I('shopId'),'int')){
 
-            $Shop=new \Shop();
+            $Shop=new shop();
 
             $result=$Shop->shopGoodByShopid($shopId);
 

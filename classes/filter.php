@@ -10,6 +10,7 @@ class IFilter
      */
     public static function limitLen($str,$length)
     {
+
         if($length !== false)
         {
             $count = strlen($str);
@@ -35,6 +36,7 @@ class IFilter
      */
     public static function act($str,$type = 'string',$limitLen = false)
     {
+        $str=trim($str);
         if(is_array($str))
         {
             foreach($str as $key => $val)

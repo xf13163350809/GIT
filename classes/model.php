@@ -66,6 +66,7 @@ class IModel
      */
     public function update($where,$except=array(),$flag=false)
     {
+
         $except = is_array($except) ? $except : array($except);
         //获取更新数据
         $tableObj  = $this->tableData;
@@ -74,13 +75,14 @@ class IModel
         foreach($tableObj as $key => $val)
         {
             if($updateStr != '') $updateStr.=' , ';
-            if(!in_array($key,$except))
+            if(!in_array($key,$except)){
                 $updateStr.= '`'.$key.'` = \''.$val.'\'';
-            else
+            }else{
                 $updateStr.= '`'.$key.'` = '.$val;
+            }
         }
         $sql = 'UPDATE '.$this->tableName.' SET '.$updateStr.$where;
-
+echo $sql;
         return $this->db->query($sql);
     }
 
@@ -126,6 +128,8 @@ class IModel
     public function getObj($where = false,$cols = '*',$orderBy='',$desc='')
     {
         $result = $this->query($where,$cols,$orderBy,$desc,1);
+
+        var_dump($result);
         if(empty($result))
         {
             return array();

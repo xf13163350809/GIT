@@ -6,7 +6,8 @@
  * Date: 15-2-11
  * Time: 下午2:04
  */
-class Shop extends Model{
+
+class Shop{
 
     /*
      * 通过产品id检索店铺信息

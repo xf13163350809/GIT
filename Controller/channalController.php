@@ -21,6 +21,23 @@ class channalController extends Controller{
         if($channalid=IFilter::act(isset($_GET['channalid']),'int')){
 
             switch($channalid){
+/*邻里活动*/
+                case 4:
+                    $data=array(
+                        array(
+                            'img'=>'',
+                            'url'=>''
+                        )
+                    );break;
+/*便民服务*/
+                case 8:
+                    $data=array(
+                        array(
+                            'img'=>'',
+                            'url'=>''
+                        )
+                    );break;
+
 /*元宝商城*/
                 case 16:
                     $data=array(
@@ -29,7 +46,7 @@ class channalController extends Controller{
                             'url'=>''
                         )
                     );break;
-/*即时送达*/
+/*社区超市*/
                 case 32:
                     $data=array(
                         array(
@@ -37,7 +54,7 @@ class channalController extends Controller{
                             'url'=>''
                         )
                     );break;
-/*包邮专区*/
+/*钜惠商城*/
                 case 64:
                     $data=array(
                         array(
@@ -45,8 +62,24 @@ class channalController extends Controller{
                             'url'=>''
                         )
                     );break;
-/*特权商品*/
+/*天天特惠*/
                 case 128:
+                    $data=array(
+                        array(
+                            'img'=>'',
+                            'url'=>''
+                        )
+                    );break;
+
+ /*周边优惠*/    case 256:
+                    $data=array(
+                        array(
+                            'img'=>'',
+                            'url'=>''
+                        )
+                    );break;
+
+  /*订餐*/       case 512:
                     $data=array(
                         array(
                             'img'=>'',
@@ -55,12 +88,7 @@ class channalController extends Controller{
                     );break;
 /*其它*/
                 default:
-                    $data=array(
-                        array(
-                            'img'=>'',
-                            'url'=>''
-                        )
-                    );
+                    return '';
             }
             return Response::json('200','',$data);
         }
